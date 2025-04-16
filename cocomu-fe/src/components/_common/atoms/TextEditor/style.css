@@ -1,0 +1,118 @@
+/* 상단 툴바 */
+.ql-toolbar.ql-snow {
+  border: 1px solid #979797; /* color.gray[600] */
+  border-radius: 0.8rem;
+  padding: 1.6rem;
+}
+
+/* 서체 설정 초기화 */
+.ql-container {
+  font-family: inherit;
+}
+
+/* 입력 영역 스타일 */
+.ql-container.ql-snow {
+  margin-top: 0.6rem;
+  border: 1px solid #979797; /* color.gray[600] */
+  border-radius: 0.8rem;
+}
+
+/* 입력 영역 상단 border */
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+  border-top: 1px solid #979797; /* color.gray[600] */
+}
+
+/* 입력 영역 내부 padding값 지정 */
+.ql-editor {
+  padding: 1.6rem;
+}
+
+.ql-bubble > .ql-editor {
+  padding: 0;
+}
+
+/* 일반 서체 */
+.ql-editor > * {
+  /* font.common.default */
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  letter-spacing: 0;
+}
+
+/* Heading 1 */
+.ql-editor h1 {
+  /* font.heading[800] */
+  font-weight: 700;
+  font-size: 4.06rem;
+  line-height: 2.4rem;
+  letter-spacing: 0;
+
+  margin-top: 1.6rem;
+}
+
+/* Heading 2 */
+.ql-editor h2 {
+  /* font.heading[600] */
+  font-weight: 700;
+  font-size: 2.8rem;
+  line-height: 2.4rem;
+  letter-spacing: 0;
+
+  margin-top: 1.2rem;
+}
+
+/* Heading 3 */
+.ql-editor h3 {
+  /* font.heading[500] */
+  font-weight: 600;
+  font-size: 2.24rem;
+  line-height: 2.4rem;
+  letter-spacing: 0;
+
+  margin-top: 0.8rem;
+}
+
+/* p 태그 */
+.ql-editor p {
+  /* font.common.default */
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  letter-spacing: 0;
+
+  padding: 0.2rem;
+}
+
+/* 굵은 서체 */
+.ql-editor strong {
+  font-weight: 700;
+}
+
+/* 기울인 서체 */
+.ql-editor em {
+  font-style: italic;
+}
+
+/* 인용구 */
+.ql-editor blockquote {
+  margin: 0.5rem 0;
+  border-left: 0.4rem solid #979797; /* color.gray[600] */
+  padding-left: 1.6rem;
+
+  /* font.common.default */
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  letter-spacing: 0;
+}
+
+/* 리스트 */
+.ql-editor ol,
+.ql-editor ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  padding-left: 0.4rem;
+}
