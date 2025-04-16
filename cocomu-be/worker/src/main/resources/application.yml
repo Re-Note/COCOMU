@@ -1,0 +1,34 @@
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:admin}
+    password: ${RABBITMQ_PASSWORD:admin123!@#}
+
+server:
+  port: 8081
+
+api:
+  server:
+    uri: ${API_SERVER_URI:http://localhost:8080}
+
+
+admin:
+  username: ${ADMIN_USERNAME:cocomu}
+  password: ${ADMIN_PASSWORD:cocomu1!}
+
+rabbitmq:
+  exchange:
+    name: ${RABBITMQ_EXCHANGE_NAME:code.executor.exchange}
+  execution:
+    routing:
+      send: ${RABBITMQ_EXECUTION_RECEIVE_KEY:code.executor.execution.result}
+      receive: ${RABBITMQ_EXECUTION_SEND_KEY:code.executor.execution.request}
+    queue:
+      request: ${RABBITMQ_EXECUTION_REQUEST_QUEUE:code.executor.execution.request.queue}
+  submission:
+    routing:
+      send: ${RABBITMQ_SUBMISSION_RECEIVE_KEY:code.executor.submission.result}
+      receive: ${RABBITMQ_SUBMISSION_SEND_KEY:code.executor.submission.request}
+    queue:
+      request: ${RABBITMQ_SUBMISSION_REQUEST_QUEUE:code.executor.submission.request.queue}

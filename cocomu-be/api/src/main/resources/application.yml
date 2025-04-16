@@ -1,0 +1,120 @@
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:admin}
+    password: ${RABBITMQ_PASSWORD:admin123!@#}
+  datasource:
+    url: jdbc:h2:mem:test;MODE=MySQL;DATABASE_TO_LOWER=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        default_batch_fetch_size: 100
+    open-in-view: false
+  security:
+    cors:
+      allowed-origins: ${ALLOWED_ORIGINS}
+  cloud:
+    aws:
+      credentials:
+        access-key: ${AWS_ACCESS_KEY}
+        secret-key: ${AWS_SECRET_KEY}
+      region:
+        static: ${AWS_STATIC_REGION}
+      s3:
+        endpoint: ${AWS_S3_ENDPOINT}
+        bucket: ${AWS_S3_BUCKET}
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 35MB
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: always
+  health:
+    rabbit:
+      enabled: true
+
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter : method
+    doc-expansion : none
+
+jwt:
+  secret-key: random-secret-key-32-byte-1234567890-1234567890
+  access-exp: 3600000
+  refresh-exp: 86400000
+
+admin:
+  username: cocomu
+  password: cocomu1!
+  swagger:
+    url: http://localhost:8080
+
+oauth:
+  github:
+    client-id: ${GITHUB_ID}
+    client-secret: ${GITHUB_SECRET}
+    client-id-dev: ${GITHUB_ID_DEV}
+    client-secret-dev: ${GITHUB_SECRET_DEV}
+  kakao:
+    client-id: ${KAKAO_ID}
+    client-secret: ${KAKAO_SECRET}
+  google:
+    client-id: ${GOOGLE_ID}
+    client-secret: ${GOOGLE_SECRET}
+    redirect-uri: ${GOOGLE_REDIRECT_URI}
+    redirect-uri-dev: ${GOOGLE_REDIRECT_URI_DEV}
+    
+rabbitmq:
+  exchange:
+    name: ${RABBITMQ_EXCHANGE_NAME:code.executor.exchange}
+  execution:
+    routing:
+      send: ${RABBITMQ_EXECUTION_SEND_KEY:code.executor.execution.request}
+      receive: ${RABBITMQ_EXECUTION_RECEIVE_KEY:code.executor.execution.result}
+    queue:
+      result: ${RABBITMQ_EXECUTION_RESULT_QUEUE:code.executor.execution.result.queue}
+  submission:
+    routing:
+      send: ${RABBITMQ_SUBMISSION_SEND_KEY:code.executor.submission.request}
+      receive: ${RABBITMQ_SUBMISSION_RECEIVE_KEY:code.executor.submission.result}
+    queue:
+      result: ${RABBITMQ_SUBMISSION_RESULT_QUEUE:code.executor.submission.result.queue}
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  jpa:
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: false
+  h2:
+    console:
+      enabled: true
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
